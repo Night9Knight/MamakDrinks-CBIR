@@ -17,8 +17,8 @@ import os
 # configs for histogram
 n_bin   = 12        # histogram bins
 n_slice = 3         # slice image
-h_type  = 'region'  # global or region
-d_type  = 'd1'      # distance type
+h_type  = 'global'  # global or region
+d_type  = 'jensenshannon'      # distance type
 
 depth   = 3         # retrieved depth, set to None will count the ap for whole database
 

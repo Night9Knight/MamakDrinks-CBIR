@@ -14,10 +14,11 @@ from gabor import Gabor
 from HOG   import HOG
 from vggnet import VGGNetFeat
 from resnet import ResNetFeat
+from fusion import FeatureFusion
 
 depth = 5
-d_type = 'd2'
-query_idx = 450
+d_type = 'jensenshannon'
+query_idx = 1300
 
 if __name__ == '__main__':
   db = Database()
@@ -109,6 +110,35 @@ if __name__ == '__main__':
     axes[0][i].set_frame_on(False)
     axes[0][i].set_axis_off()
 
+  for i, r in enumerate(result):
+    axes[1][i].imshow(Image.open(r['img']))
+    axes[1][i].set_title('Image {}'.format(i+1))
+    axes[1][i].set_axis_off()
+    axes[1][i].set_xlabel('Distance: {}'.format(r['dis']))
+  
+  plt.show()
+
+  # retrieve by fusion of Texture, and Color features
+  method = FeatureFusion(features=['gabor', 'color'])
+  samples = method.make_samples(db)
+  query = samples[query_idx]
+  _, result, perf = infer(query, samples=samples, depth=depth, d_type=d_type)
+  print("Fusion:",result)
+  print("Performance:",perf)
+
+  # Plot the result
+  fig, axes = plt.subplots(2,depth)
+  fig.suptitle('Texture and Color Fusion based search')
+  axes[0][depth//2].imshow(Image.open(query['img']))
+  axes[0][depth//2].set_title('Query image')
+  axes[0][depth//2].set_axis_off()
+
+  for i in range(depth):
+    if i==depth//2:
+        continue
+    axes[0][i].set_frame_on(False)
+    axes[0][i].set_axis_off()
+  
   for i, r in enumerate(result):
     axes[1][i].imshow(Image.open(r['img']))
     axes[1][i].set_title('Image {}'.format(i+1))

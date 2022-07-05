@@ -16,8 +16,8 @@ import os
 
 stride = (1, 1)
 n_slice  = 10
-h_type   = 'region'
-d_type   = 'cosine'
+h_type   = 'global'
+d_type   = 'jensenshannon'
 
 depth    = 5
 

@@ -26,7 +26,7 @@ bandwidth = (0.3, 0.7, 1)
 
 n_slice  = 2
 h_type   = 'global'
-d_type   = 'cosine'
+d_type   = 'jensenshannon'
 
 depth    = 1
 
