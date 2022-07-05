@@ -5,3 +5,4 @@ Able to retrive the first 5 closest image based on following features:
 - Edge
 - Texture (Gabor)
 - Color
+- Fusion of Color and Texture features
