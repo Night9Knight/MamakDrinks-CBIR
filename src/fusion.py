@@ -21,7 +21,7 @@ import os
 d_type   = 'd1'
 depth    = 30
 
-feat_pools = ['color', 'edge', 'gabor']
+feat_pools = ['color', 'gabor', 'edge']
 
 # result dir
 result_dir = 'result'
@@ -122,7 +122,7 @@ if __name__ == "__main__":
   evaluate_feats(db, N=2, d_type='d1')
 
   # evaluate features triple-wise
-  evaluate_feats(db, N=3, d_type='d1')
+  # evaluate_feats(db, N=3, d_type='d1')
   
   # # evaluate features quadra-wise
   # evaluate_feats(db, N=4, d_type='d1')
